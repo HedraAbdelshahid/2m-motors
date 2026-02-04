@@ -271,18 +271,289 @@ nav a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 40px;
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 14px;
+        margin: 15px 0 30px;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        display: block;
+        text-align: center;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .nav-inner {
+        padding: 12px 0;
+    }
+
+    nav a {
+        margin-left: 16px;
+        font-size: 13px;
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .trust {
+        padding: 50px 0;
+    }
+
+    .trust-grid {
+        gap: 20px;
+    }
+
+    .trust-card {
+        padding: 20px;
+    }
+
+    .inventory {
+        padding: 60px 0;
+    }
+
+    .section-subtitle {
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .slider-container {
+        gap: 12px;
+    }
+
+    .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .vehicle-card {
+        border: 1px solid var(--border);
+    }
+
+    .vehicle-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .vehicle-info {
+        padding: 16px;
+    }
+
+    .vehicle-info h4 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .vehicle-info p {
+        font-size: 13px;
+    }
+
+    .about {
+        padding: 60px 0;
     }
 
     .about-grid,
     .contact-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 
+    .about-grid h2,
+    .contact-grid h2 {
+        font-size: 24px;
+    }
+
+    .about-stats div {
+        margin-bottom: 16px;
+    }
+
+    .about-stats strong {
+        font-size: 24px;
+    }
+
+    .contact {
+        padding: 60px 0;
+    }
+
+    .contact-grid p {
+        font-size: 14px;
+    }
+
+    .map iframe {
+        height: 280px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 13px;
+        margin: 12px 0 20px;
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        gap: 10px;
+    }
+
+    .btn-primary,
     .btn-secondary {
-        margin-left: 0;
-        margin-top: 12px;
-        display: inline-block;
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+
+    .logo {
+        font-size: 12px;
+    }
+
+    nav a {
+        margin-left: 12px;
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .trust {
+        padding: 40px 0;
+    }
+
+    .trust-grid {
+        gap: 15px;
+    }
+
+    .trust-card {
+        padding: 15px;
+    }
+
+    .trust-card h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .trust-card p {
+        font-size: 12px;
+    }
+
+    .inventory {
+        padding: 40px 0;
+    }
+
+    .section-subtitle {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .slider-container {
+        gap: 8px;
+    }
+
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .inventory-grid {
+        gap: 15px;
+    }
+
+    .vehicle-info {
+        padding: 12px;
+    }
+
+    .vehicle-info h4 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .vehicle-info p {
+        font-size: 12px;
+    }
+
+    .btn-small {
+        padding: 6px 10px;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .about {
+        padding: 40px 0;
+    }
+
+    .about-grid {
+        gap: 25px;
+    }
+
+    .about-stats div {
+        margin-bottom: 15px;
+    }
+
+    .about-stats strong {
+        font-size: 20px;
+    }
+
+    .about-stats span {
+        font-size: 13px;
+    }
+
+    .contact {
+        padding: 40px 0;
+    }
+
+    .contact-grid p {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .contact-grid a {
+        color: var(--accent);
+    }
+
+    .map iframe {
+        height: 240px;
+    }
+
+    .footer {
+        padding: 20px 0;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        font-size: 11px;
     }
 }
 

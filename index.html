@@ -44,7 +44,7 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>Luxury You Can Trust.<br><span>Value You Can Afford.</span></h1>
+            <h1>Luxury You Can<br>Trust.<br><span>Value You Can Afford.</span></h1>
             <p>Premium vehicles, transparent pricing, and total peace of mind.</p>
             <div class="hero-actions">
                 <a href="#inventory" class="btn-primary">View Inventory</a>
@@ -178,7 +178,7 @@
             const cards = document.querySelectorAll('.vehicle-card');
             const total = vehicleIds.length;
             const maxSlides = Math.ceil(total / itemsPerSlide);
-            
+
             cards.forEach((card, idx) => {
                 const cardSlide = Math.floor(idx / itemsPerSlide);
                 card.style.display = cardSlide === currentSlide ? 'block' : 'none';
