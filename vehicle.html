@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2019 BMW 5 Series | 2M Motors LLC</title>
+
+    <!-- SEO -->
+    <meta name="description"
+        content="2019 BMW 5 Series for sale at 2M Motors LLC in Johnston, Iowa. Luxury sedan with premium features and transparent pricing." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <header class="nav">
+        <div class="container nav-inner">
+            <div class="logo">2M MOTORS</div>
+            <nav>
+                <a href="index.html#inventory">Inventory</a>
+                <a href="index.html#about">About</a>
+                <a href="tel:15157707883" class="btn-outline">Call Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- VEHICLE HERO -->
+    <section class="vehicle-hero">
+        <div class="container vehicle-hero-grid">
+
+            <!-- IMAGE GALLERY -->
+            <div class="vehicle-gallery">
+                <img id="main-image" src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Vehicle image">
+                <div class="gallery-thumbs" id="thumbs">
+                    <!-- thumbnails populated dynamically -->
+                </div>
+            </div>
+
+            <!-- VEHICLE SUMMARY -->
+            <div class="vehicle-summary">
+                <h1 id="vehicle-title">Vehicle Title</h1>
+                <p class="vehicle-price" id="vehicle-price">$0</p>
+
+                <ul class="vehicle-specs" id="vehicle-specs">
+                    <!-- specs populated dynamically -->
+                </ul>
+
+                <div class="vehicle-actions">
+                    <a href="tel:15157707883" class="btn-primary">Call to Buy</a>
+                    <a href="#contact" class="btn-secondary">Schedule Visit</a>
+                </div>
+
+                <p class="vehicle-note">
+                    Transparent pricing. No hidden fees. Buy with confidence.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VEHICLE DETAILS -->
+    <section class="vehicle-details">
+        <div class="container">
+            <h2>Vehicle Details</h2>
+            <p>
+                This 2019 BMW 5 Series delivers a perfect blend of luxury, performance,
+                and comfort. Well maintained, clean title, and ready for its next owner.
+            </p>
+
+            <div class="features-grid" id="features-grid">
+                <!-- features populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="contact" id="contact">
+        <div class="container contact-grid">
+            <div>
+                <h2>Interested in This Vehicle?</h2>
+                <p><strong>Call:</strong> <a href="tel:15157707883">(515) 770-7883</a></p>
+                <p><strong>Visit:</strong><br>5532 NW Beaver Dr<br>Johnston, IA 50131</p>
+                <p><strong>Hours:</strong> Mon–Sat: 9 AM – 6 PM</p>
+            </div>
+
+            <div class="map">
+                <iframe src="https://www.google.com/maps?q=5532%20NW%20Beaver%20Dr,%20Johnston,%20IA&output=embed"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 2M Motors LLC</p>
+            <p>Drive Home With Confidence</p>
+        </div>
+    </footer>
+
+    <script src="vehicles-data.js"></script>
+
+    <script>
+    function showErrorPage(message){
+        const errorHtml = `
+            <div style="text-align: center; padding: 60px 20px;">
+                <h2>Vehicle Not Found</h2>
+                <p style="margin-bottom: 40px; color: var(--text-muted);">${message}</p>
+                <p style="margin-bottom: 30px;"><a href="index.html" class="btn-primary" style="display: inline-block; padding: 12px 24px;">Back to Inventory</a></p>
+                
+                <div style="border-top: 1px solid var(--border); padding-top: 40px; max-width: 500px; margin: 40px auto;">
+                    <h3 style="margin-bottom: 20px;">Contact Us</h3>
+                    <p><strong>Phone:</strong> <a href="tel:15157707883" style="color: var(--accent);">(515) 770-7883</a></p>
+                    <p><strong>Address:</strong><br>5532 NW Beaver Dr<br>Johnston, IA 50131</p>
+                    <p><strong>Hours:</strong> Mon–Sat: 9 AM – 6 PM</p>
+                </div>
+            </div>
+        `;
+        const hero = document.querySelector('.vehicle-hero .container');
+        if(hero) hero.innerHTML = errorHtml;
+    }
+
+    async function loadVehicle(){
+        const params = new URLSearchParams(location.search);
+        const id = params.get('id') || 'bmw-2019';
+
+        const data = window.VEHICLES;
+        if(!data){
+            showErrorPage('Vehicle data not found. Ensure vehicles-data.js is present.');
+            return;
+        }
+
+        try{
+            const v = data[id];
+            if(!v){
+                showErrorPage('This vehicle is no longer available. Please select another from our inventory.');
+                return;
+            }
+                document.title = v.title + ' | 2M Motors LLC';
+                document.getElementById('vehicle-title').textContent = v.title;
+                document.getElementById('vehicle-price').textContent = v.price;
+
+                const specs = document.getElementById('vehicle-specs');
+                specs.innerHTML = '';
+                const fields = {"Mileage":"mileage","Engine":"engine","Transmission":"transmission","Drivetrain":"drivetrain","Exterior":"exterior","Interior":"interior"};
+                for(const label in fields){
+                    const key = fields[label];
+                    if(v[key]){
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${label}:</strong> ${v[key]}`;
+                        specs.appendChild(li);
+                    }
+                }
+
+                const main = document.getElementById('main-image');
+                if(v.images && v.images.length) main.src = v.images[0];
+                const thumbs = document.getElementById('thumbs');
+                thumbs.innerHTML = '';
+                if(v.images){
+                    v.images.forEach(src=>{
+                        const img = document.createElement('img');
+                        img.src = src; img.alt = '';
+                        img.addEventListener('click', ()=> main.src = src);
+                        thumbs.appendChild(img);
+                    });
+                }
+
+                const fg = document.getElementById('features-grid');
+                fg.innerHTML = '';
+                if(v.features){
+                    v.features.forEach(f=>{
+                        const d = document.createElement('div');
+                        d.textContent = '✔ ' + f;
+                        fg.appendChild(d);
+                    });
+                }
+
+                const detailsP = document.querySelector('.vehicle-details .container p');
+                if(detailsP) detailsP.textContent = v.description || '';
+
+        }catch(err){
+            console.error('Error populating vehicle data:', err);
+            showErrorPage('Error loading vehicle data. Please contact us directly.');
+        }
+        }
+        loadVehicle();
+        </script>
+
+</body>
+
+</html>

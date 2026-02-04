@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2M Motors LLC | Luxury Used Cars in Johnston, IA</title>
+
+    <!-- SEO -->
+    <meta name="description"
+        content="2M Motors LLC offers reliable, affordable luxury vehicles in Johnston, Iowa. 5-star rated local dealership. Drive home with confidence." />
+    <meta name="keywords" content="used cars Johnston IA, luxury used cars Iowa, 2M Motors LLC" />
+    <meta name="author" content="2M Motors LLC" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="2M Motors LLC | Luxury You Can Trust" />
+    <meta property="og:description" content="Premium vehicles, transparent pricing, total peace of mind." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="vehicles-data.js"></script>
+</head>
+
+<body>
+
+    <header class="nav">
+        <div class="container nav-inner">
+            <div class="logo">2M MOTORS</div>
+            <nav>
+                <a href="#inventory">Inventory</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="btn-outline">Call Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Luxury You Can Trust.<br><span>Value You Can Afford.</span></h1>
+            <p>Premium vehicles, transparent pricing, and total peace of mind.</p>
+            <div class="hero-actions">
+                <a href="#inventory" class="btn-primary">View Inventory</a>
+                <a href="tel:15157707883" class="btn-secondary">Call (515) 770-7883</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust">
+        <div class="container trust-grid">
+            <div class="trust-card">
+                <h3>⭐ 5.0 Google Rating</h3>
+                <p>Trusted by customers across Central Iowa.</p>
+            </div>
+            <div class="trust-card">
+                <h3>Quality Vehicles</h3>
+                <p>Hand-selected inventory you can rely on.</p>
+            </div>
+            <div class="trust-card">
+                <h3>Honest Pricing</h3>
+                <p>No pressure. No hidden fees.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section class="inventory" id="inventory">
+        <div class="container">
+            <h2>Featured Inventory</h2>
+            <p class="section-subtitle">Explore our hand-picked selection of quality vehicles</p>
+
+            <div class="slider-container">
+                <button class="slider-btn slider-prev" id="sliderPrev" aria-label="Previous vehicle">❮</button>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Populated dynamically from window.VEHICLES -->
+                </div>
+                <button class="slider-btn slider-next" id="sliderNext" aria-label="Next vehicle">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div>
+                <h2>About 2M Motors LLC</h2>
+                <p>
+                    At 2M Motors LLC, we believe everyone deserves access to quality vehicles
+                    without breaking the bank. We focus on reliability, transparency, and
+                    customer satisfaction—so you can buy with confidence.
+                </p>
+                <p>
+                    As a locally owned dealership in Johnston, Iowa, we treat every customer
+                    with honesty and respect. No gimmicks. Just great cars and fair deals.
+                </p>
+            </div>
+
+            <div class="about-stats">
+                <div>
+                    <strong>5.0★</strong>
+                    <span>Google Reviews</span>
+                </div>
+                <div>
+                    <strong>Local</strong>
+                    <span>Trusted Dealer</span>
+                </div>
+                <div>
+                    <strong>100%</strong>
+                    <span>Transparent Pricing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container contact-grid">
+            <div>
+                <h2>Visit Us</h2>
+                <p><strong>Address</strong><br>5532 NW Beaver Dr<br>Johnston, IA 50131</p>
+                <p><strong>Phone</strong><br><a href="tel:15157707883">(515) 770-7883</a></p>
+                <p><strong>Hours</strong><br>Mon–Sat: 9 AM – 6 PM</p>
+            </div>
+
+            <div class="map">
+                <iframe src="https://www.google.com/maps?q=5532%20NW%20Beaver%20Dr,%20Johnston,%20IA&output=embed"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 2M Motors LLC</p>
+            <p>Drive Home With Confidence</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const itemsPerSlide = 3;
+        let vehicleIds = [];
+
+        function renderInventory() {
+            const grid = document.getElementById('inventoryGrid');
+            grid.innerHTML = '';
+            const vehicles = window.VEHICLES;
+            vehicleIds = Object.keys(vehicles);
+
+            vehicleIds.forEach((id, idx) => {
+                const v = vehicles[id];
+                const card = document.createElement('article');
+                card.className = 'vehicle-card';
+                card.setAttribute('data-index', idx);
+                card.innerHTML = `
+                <img src="${v.images[0]}" alt="${v.title}">
+                <div class="vehicle-info">
+                    <h4>${v.title}</h4>
+                    <p>${v.price} · ${v.mileage}</p>
+                    <a href="vehicle.html?id=${id}" class="btn-small">View Details</a>
+                </div>
+            `;
+                grid.appendChild(card);
+            });
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const cards = document.querySelectorAll('.vehicle-card');
+            const total = vehicleIds.length;
+            const maxSlides = Math.ceil(total / itemsPerSlide);
+            
+            cards.forEach((card, idx) => {
+                const cardSlide = Math.floor(idx / itemsPerSlide);
+                card.style.display = cardSlide === currentSlide ? 'block' : 'none';
+            });
+
+            document.getElementById('sliderPrev').disabled = currentSlide === 0;
+            document.getElementById('sliderNext').disabled = currentSlide >= maxSlides - 1;
+        }
+
+        document.getElementById('sliderPrev').addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        });
+
+        document.getElementById('sliderNext').addEventListener('click', () => {
+            const total = vehicleIds.length;
+            const maxSlides = Math.ceil(total / itemsPerSlide);
+            if (currentSlide < maxSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        });
+
+        renderInventory();
+    </script>
+
+</body>
+
+</html>
